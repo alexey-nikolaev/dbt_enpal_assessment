@@ -28,6 +28,16 @@ models:
       - name: assigned_to_user_id
         description: The unique identifier of the user assigned to the activity.
         data_type: integer
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            to: ref('dim_users')
+            to_columns: [id]
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_users')
+              field: id
       - name: deal_id
         description: The unique identifier of the deal associated with the activity.
         data_type: integer
